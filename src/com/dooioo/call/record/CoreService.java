@@ -23,6 +23,8 @@ public class CoreService extends Service
 	{
 		super.onCreate();
 		Logger.e(TAG, "onCreate()");
+		
+		//
 	}
 
 	@Override
