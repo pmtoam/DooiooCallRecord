@@ -71,6 +71,7 @@ public class CoreService extends Service
 			switch (state) 
 			{
 			case TelephonyManager.CALL_STATE_IDLE:
+				
 				if (recorder != null) 
 				{
 					recorder.stop();
@@ -79,6 +80,7 @@ public class CoreService extends Service
 					recorder = null;
 				}
 				break;
+				
 			case TelephonyManager.CALL_STATE_RINGING:
 				
 				File path = new File(Environment.getExternalStorageDirectory() + "/CallRecords/");
@@ -90,19 +92,13 @@ public class CoreService extends Service
 					try
 					{
 						recorder = new MediaRecorder();
-						// 設置聲音源(麥克風)
 						recorder.setAudioSource(MediaRecorder.AudioSource.VOICE_CALL);
-						// 设置声音文件的格式(3gp)
 						recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-						// 设置声音文件的编码
 						recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-						// 设置输出声音文件的路径
 						recorder.setOutputFile(Environment.getExternalStorageDirectory()
 								+ "/CallRecords/"
 								+ AndroidUtil.getCurrebtDate(System.currentTimeMillis()) + ".mp3");
-						// 准备录音
 						recorder.prepare();
-						// 修改标志
 						coreService.flag = "in";
 					} 
 					catch (Exception e)
@@ -112,7 +108,6 @@ public class CoreService extends Service
 				}
 				break;
 
-			// 通话状态
 			case TelephonyManager.CALL_STATE_OFFHOOK:
 				
 				File path1 = new File(Environment.getExternalStorageDirectory() + "/CallRecords/");
@@ -124,17 +119,12 @@ public class CoreService extends Service
 					try 
 					{
 						recorder = new MediaRecorder();
-						// 設置聲音源(麥克風)
 						recorder.setAudioSource(MediaRecorder.AudioSource.VOICE_CALL);
-						// 设置声音文件的格式(3gp)
 						recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-						// 设置声音文件的编码
 						recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-						// 设置输出声音文件的路径
 						recorder.setOutputFile(Environment.getExternalStorageDirectory()
 								+ "/CallRecords/"
 								+ AndroidUtil.getCurrebtDate(System.currentTimeMillis()) + ".mp3");
-						// 准备录音
 						recorder.prepare();
 						recorder.start();
 					}
